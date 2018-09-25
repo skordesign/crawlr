@@ -11,11 +11,14 @@ import time
 url = "https://elements.envato.com/stock-video"
 
 # create a new Firefox session
-driver = webdriver.Chrome()
+options = webdriver.ChromeOptions()
+options.add_argument("user-data-dir=temp")
+
+driver = webdriver.Chrome(executable_path="chromedriver.exe", options=options);
 driver.implicitly_wait(30);
 driver.get("https://elements.envato.com/sign-in")
 
-while driver.current_url == "https://elements.envato.com/sign-in":
+while "https://elements.envato.com/sign-in" in driver.current_url:
     time.sleep(3)
 
 driver.get(url)
